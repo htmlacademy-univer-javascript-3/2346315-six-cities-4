@@ -28,15 +28,15 @@ export type OfferType = {
       type: 'house',
       price: 1489,
       city: {
-        name: 'Paris',
+        name: 'Amsterdam',
         location: {
-          latitude: 49.85661,
-          longitude: 3.351499,
-          zoom: 13,
-        },},
+          latitude: 52.37454,
+          longitude: 4.911976,
+          zoom: 13
+        }},
       location: {
-        latitude: 49.868610000000004,
-        longitude: 3.342499,
+        latitude: 52.868610000000004,
+        longitude: 4.342499,
         zoom: 16,
       },
       isFavorite: false,
@@ -50,16 +50,15 @@ export type OfferType = {
       price: 228,
       previewImage: 'https://14.design.htmlacademy.pro/static/hotel/14.jpg',
       city: {
-        name: 'Paris',
+        name: 'Amsterdam',
         location: {
-          latitude: 48.85661,
-          longitude: 2.351499,
+          latitude: 52.37454,
+          longitude: 4.911976,
           zoom: 13
-        }
-      },
+        }},
       location: {
-        latitude: 48.858610000000006,
-        longitude: 2.330499,
+        latitude: 52.858610000000006,
+        longitude: 4.330499,
         zoom: 16
       },
       isFavorite: false,
@@ -73,9 +72,9 @@ export type OfferType = {
       city: {
         name: 'Amsterdam',
         location: {
-          latitude: 52.35514938496378,
-          longitude: 4.673877537499948,
-          zoom: 8
+          latitude: 52.37454,
+          longitude: 4.911976,
+          zoom: 13
         }},
       location: {
         latitude: 52.35514938496378,
@@ -88,3 +87,11 @@ export type OfferType = {
       previewImage: 'https://14.design.htmlacademy.pro/static/hotel/15.jpg'
     }
   ];
+  export const CITY = {
+    title: offers[0].city.name,
+    lat: offers[0].city.location.latitude,
+    lng: offers[0].city.location.longitude,
+    zoom: offers[0].city.location.zoom,
+  };
+  
+  export const POINTS = offers.map((offer) => ({title: offer.title, lat: offer.location.latitude, lng: offer.location.longitude}));
