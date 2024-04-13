@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom';
 import ListOfOffers from '../../offers-list/offers-list';
 import { OfferType } from '../../../mocks/offers';
 import { AppRoute } from '../../../routes';
+import Map from '../../map/map';
+import { CITY, POINTS } from '../../../mocks/offers';
+import { useState } from 'react';
+
 
 
 type MainProps = {
@@ -9,6 +13,23 @@ type MainProps = {
 }
 
 function Main({offers}: MainProps): JSX.Element {
+  const noSelectedPoint = {
+    title: '',
+    lat: 0,
+    lng: 0,
+  };
+  const [selectedPoint, setSelectedPoint] = useState(noSelectedPoint);
+
+  const handleListItemHover = (listItemName: string) => {
+    const currentPoint = POINTS.find((point) =>
+      point.title === listItemName,
+    );
+    if (currentPoint) {
+      setSelectedPoint(currentPoint);
+    } else {
+      setSelectedPoint(noSelectedPoint);
+    }
+  };
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -97,10 +118,12 @@ function Main({offers}: MainProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <ListOfOffers forFavoriteList={false} offers={offers}/>
+              <ListOfOffers onListItemHover={handleListItemHover} forFavoriteList={false} offers={offers}/>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <Map city={CITY} points={POINTS} selectedPoint={selectedPoint}/>
+              </section>
             </div>
           </div>
         </div>
