@@ -49,7 +49,7 @@ function FavoriteScreen({offers}: FavoritesProps): JSX.Element {
                     </Link>
                   </div>
                 </div>
-                <ListOfOffers forFavoriteList offers={offers}/>
+                <ListOfOffers listClassName='favorites__places' className='favorites' forFavoriteList offers={offers}/>
               </li>
             </ul>
           </section>

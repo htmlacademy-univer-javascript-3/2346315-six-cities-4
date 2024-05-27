@@ -8,7 +8,7 @@ type CardProps = {
     onMouseEnter: (title: string) => void;
   }
   
-  function Card({offer, forFavoriteList, onMouseEnter}: CardProps): JSX.Element {
+  function Card({className, offer, forFavoriteList, onMouseEnter}: CardProps): JSX.Element {
     const {id, title, type, price, rating, isPremium, isFavorite, previewImage} = offer;
     const handleItemHover = () => {
       onMouseEnter(title);
@@ -17,15 +17,15 @@ type CardProps = {
       onMouseEnter('');
     };
     return (
-      <article onMouseOver={handleItemHover} onMouseOut={handleItemNotHover} className={forFavoriteList ? 'favorites__card place-card' : 'cities__card place-card'}>
+      <article onMouseOver={handleItemHover} onMouseOut={handleItemNotHover} className={`${className}__card place-card`}>
         {
           isPremium &&
           <div className="place-card__mark">
             <span>Premium</span>
           </div>
         }
-        <div className={forFavoriteList ? 'favorites__image-wrapper place-card__image-wrapper' : 'cities__image-wrapper place-card__image-wrapper'}>
-          <Link to={`${AppRoute.Offer}${id}`}>
+        <div className={`${className}__image-wrapper place-card__image-wrapper`}>
+          <Link to={`/offer/:${id}`}>
             <img className="place-card__image" src={previewImage} width={forFavoriteList ? '150' : '260'} height={forFavoriteList ? '110' : '200'} alt="Place image"/>
           </Link>
         </div>
@@ -44,7 +44,7 @@ type CardProps = {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={{width: `${(rating * 20).toString() }%`}}></span>
+              <span style={{width: `${(rating * 20)}%`}}></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>

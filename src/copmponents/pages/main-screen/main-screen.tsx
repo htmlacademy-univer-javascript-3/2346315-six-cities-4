@@ -6,8 +6,6 @@ import Map from '../../map/map';
 import { CITY, POINTS } from '../../../mocks/offers';
 import { useState } from 'react';
 
-
-
 type MainProps = {
   offers: OfferType[];
 }
@@ -118,11 +116,11 @@ function Main({offers}: MainProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <ListOfOffers onListItemHover={handleListItemHover} forFavoriteList={false} offers={offers}/>
+              <ListOfOffers listClassName='cities__places-list places__list tabs__content' className='cities' onListItemHover={handleListItemHover} forFavoriteList={false} offers={offers}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={CITY} points={POINTS} selectedPoint={selectedPoint}/>
+                <Map height={800} city={CITY} points={POINTS} selectedPoint={selectedPoint}/>
               </section>
             </div>
           </div>
