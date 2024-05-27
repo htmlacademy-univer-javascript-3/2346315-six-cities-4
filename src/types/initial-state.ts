@@ -9,4 +9,5 @@ export type InitialStateType = {
     selectedMarker: {id: string} | null;
     authorizationStatus: AuthorizationStatus;
     isOffersDataLoading: boolean;
+    email: string | null;
   }

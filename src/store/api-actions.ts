@@ -2,12 +2,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import { Offer } from '../types/offer';
-import { loadOffers, requireAuthorization, setError, setOffersDataLoadingStatus } from './action';
+import { loadOffers, redirectToRoute, requireAuthorization, setError, setOffersDataLoadingStatus, saveEmail } from './action';
 import { store } from './index';
-import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../components/constants/constants';
-import { removeToken, saveToken } from '../components/services/token';
+import { APIRoute, AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../components/constants/constants';
+import { removeToken, saveToken } from '../components/services/token.ts';
 import { UserData } from '../types/user-data';
 import { AuthData } from '../types/auth-data';
+
 
 export const fetchOffers = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -48,10 +49,12 @@ export const login = createAsyncThunk<void, AuthData, {
   extra: AxiosInstance;
 }>(
   'user/login',
-  async ({ login: email, password }, { dispatch, extra: api }) => {
+  async ({ email: email, password }, { dispatch, extra: api }) => {
     const response = await api.post<UserData>(APIRoute.Login, { email, password });
     saveToken(response.data.token);
+    dispatch(saveEmail(email));
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    dispatch(redirectToRoute(AppRoute.Main));
   }
 );
 
