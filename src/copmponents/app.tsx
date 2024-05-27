@@ -12,39 +12,23 @@ type AppProps = {
     offers: OfferType[];
   }
 
-function App({offers}: AppProps): JSX.Element {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path={AppRoute.Main}
-          element={<MainScreen offers={offers}/>}
-        />
-        <Route
-          path={AppRoute.Login}
-          element={<LoginScreen/>}
-        />
-        <Route
-          path={AppRoute.Favorites}
-          element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
-            >
-              <FavoritesScreen offers={offers}/>
+  function App({offers}: AppProps): JSX.Element {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path={AppRoute.Main} element={<MainScreen offers={offers}/>}></Route>
+          <Route path={AppRoute.Login} element={<LoginScreen/>}/>
+          <Route path={AppRoute.Favorites} element={
+            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <FavoritesScreen  offers={offers}/>
             </PrivateRoute>
           }
-        />
-        <Route
-          path={AppRoute.Offer}
-          element={<OfferScreen/>}
-        />
-        <Route
-          path="*"
-          element={<ErrorScreen/>}
-        />
-      </Routes>
-    </BrowserRouter>
-  );
-}
+          />
+          <Route path={AppRoute.Offer} element={<OfferScreen/>}/>
+          <Route path="*" element={<ErrorScreen/>}/>
+        </Routes>
+      </BrowserRouter>
+    );
+  }
 
 export default App;
