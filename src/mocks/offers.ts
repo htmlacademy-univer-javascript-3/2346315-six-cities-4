@@ -3,7 +3,7 @@ import { Offer } from '../types/offer';
 
 export const offers: Offer[] = [
   {
-    id: 1,
+    id: '1',
     image: 'img/apartment-01.jpg',
     city: {
       name: 'Amsterdam',
@@ -20,7 +20,7 @@ export const offers: Offer[] = [
     rating: 4.8,
     bedrooms: 3,
     maxAdults: 4,
-    price: 120,
+    price: 100,
     owner: {
       avatar: 'img/avatar-max.jpg',
       name: 'Max',
@@ -30,14 +30,14 @@ export const offers: Offer[] = [
   },
 
   {
-    id: 2,
+    id: '2',
     image: 'img/room.jpg',
     city: {
       name: 'Amsterdam',
       'location': {
         'latitude': 52.3609553943508,
         'longitude': 4.85309666406198,
-        'zoom': 8
+        'zoom': 10
       }
     },
     title: 'Wood and stone place',
@@ -57,14 +57,14 @@ export const offers: Offer[] = [
   },
 
   {
-    id: 3,
+    id: '3',
     image: 'img/apartment-02.jpg',
     city: {
       name: 'Amsterdam',
       'location': {
         'latitude': 52.3909553943508,
         'longitude': 4.929309666406198,
-        'zoom': 8
+        'zoom': 10
       }
     },
     title: 'Canal View Prinsengracht',
@@ -84,14 +84,14 @@ export const offers: Offer[] = [
   },
 
   {
-    id: 4,
+    id: '4',
     image: 'img/apartment-03.jpg',
     city: {
       name: 'Amsterdam',
       'location': {
         'latitude': 52.3809553943508,
         'longitude': 4.939309666406198,
-        'zoom': 8
+        'zoom': 10
       }
     },
     title: 'Nice, cozy, warm big bed apartment',
@@ -111,7 +111,7 @@ export const offers: Offer[] = [
   },
 
   {
-    id: 5,
+    id: '5',
     image: 'img/apartment-02.jpg',
     city: {
       name: 'Paris',
@@ -123,7 +123,7 @@ export const offers: Offer[] = [
     },
     title: 'Beautiful & luxurious studio at great location',
     description: '',
-    isPremium: false,
+    isPremium: true,
     type: 'apartment',
     rating: 4,
     bedrooms: 2,
@@ -138,7 +138,7 @@ export const offers: Offer[] = [
   },
 
   {
-    id: 6,
+    id: '6',
     image: 'img/apartment-03.jpg',
     city: {
       name: 'Paris',
@@ -155,13 +155,40 @@ export const offers: Offer[] = [
     rating: 4,
     bedrooms: 2,
     maxAdults: 1,
-    price: 120,
+    price: 105,
     owner: {
       avatar: 'img/avatar-max.jpg',
       name: 'Max',
       isPro: true
     },
     isFavorite: true,
+  },
+
+  {
+    id: '7',
+    image: 'img/apartment-02.jpg',
+    city: {
+      name: 'Hamburg',
+      'location': {
+        'latitude': 53.551086,
+        'longitude': 9.993682,
+        'zoom': 10
+      }
+    },
+    title: 'Beautiful & luxurious studio at great location',
+    description: '',
+    isPremium: false,
+    type: 'room',
+    rating: 5,
+    bedrooms: 3,
+    maxAdults: 2,
+    price: 99,
+    owner: {
+      avatar: 'img/avatar-max.jpg',
+      name: 'Max',
+      isPro: false
+    },
+    isFavorite: false,
   },
 
 ];

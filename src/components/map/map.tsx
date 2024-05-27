@@ -1,8 +1,10 @@
 import { useRef, useEffect } from 'react';
-import { Icon, Marker } from 'leaflet';
+import { Icon, Marker, layerGroup } from 'leaflet';
 import { City } from '../../types/city';
 import { Offer } from '../../types/offer';
-import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT, MapClasses } from '../constants/constants';
+import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../constants/constants';
+import { MapClasses } from '../constants/constants';
+import { useAppSelector } from '../../hooks';
 
 import useMap from '../../hooks/use-map';
 import 'leaflet/dist/leaflet.css';
@@ -10,7 +12,6 @@ import 'leaflet/dist/leaflet.css';
 type MapProps = {
   city: City;
   points: Offer[];
-  activeOfferId: number;
   isMainPage: boolean;
 };
 
@@ -27,44 +28,41 @@ const currentIcon = new Icon({
 });
 
 
-function Map(props: MapProps): JSX.Element {
-  const {city, points, activeOfferId, isMainPage} = props;
+function Map({city, points, isMainPage}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
+  const selectedMarker = useAppSelector((state) => state.selectedMarker);
 
   useEffect(() => {
     if (map) {
-      map.eachLayer((layer) => {
-        if (layer.options.pane === 'markerPane') {
-          map.removeLayer(layer);
-        }
-      });
-
-      points.forEach((point: Offer) => {
-        const marker = new Marker({
-          lat: point.city.location.latitude,
-          lng: point.city.location.longitude,
-        });
-
-        marker.setIcon(
-          activeOfferId !== undefined && point.id === activeOfferId ? currentIcon : defaultIcon
-        )
-          .addTo(map);
-      });
-    }
-  }, [map, points, activeOfferId]);
-
-  useEffect(() => {
-    if (map) {
-      map.flyTo([city.location.latitude, city.location.longitude], city.location.zoom);
+      map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
     }
   }, [map, city]);
 
-  return (
-    <section className={isMainPage ? MapClasses.SectionPropertyMapClass : MapClasses.SectionMainMapClass} ref={mapRef} key={city.name}>
-    </section>
-  );
+  useEffect(() => {
+    if (map) {
+      const markers = layerGroup().addTo(map);
+      points.forEach((point) => {
+        new Marker({
+          lat: point.city.location.latitude,
+          lng: point.city.location.longitude
+        }).setIcon(selectedMarker !== null && point.id === selectedMarker.id ? currentIcon : defaultIcon)
+          .addTo(markers);
+
+      });
+
+      return () => {
+        map.removeLayer(markers);
+      };
+    }
+  }, [map, points, selectedMarker]);
+
+
+  const mapClassName = isMainPage ? MapClasses.SectionPropertyMapClass : MapClasses.SectionMainMapClass;
+
+
+  return <div className={mapClassName} style={{ height: '100%' }} ref={mapRef}></div>;
 }
 
 export default Map;
