@@ -4,7 +4,7 @@ import { Offer } from '../types/offer';
 export const offers: Offer[] = [
   {
     id: '1',
-    image: 'img/apartment-01.jpg',
+    previewImage: 'img/apartment-01.jpg',
     city: {
       name: 'Amsterdam',
       location: {
@@ -12,6 +12,11 @@ export const offers: Offer[] = [
         longitude: 4.85309666406198,
         zoom: 8
       }
+    },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 8
     },
     title: 'Beautiful & luxurious studio at great location',
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
@@ -31,7 +36,7 @@ export const offers: Offer[] = [
 
   {
     id: '2',
-    image: 'img/room.jpg',
+    previewImage: 'img/room.jpg',
     city: {
       name: 'Amsterdam',
       'location': {
@@ -39,6 +44,11 @@ export const offers: Offer[] = [
         'longitude': 4.85309666406198,
         'zoom': 10
       }
+    },
+    'location': {
+      'latitude': 52.3609553943508,
+      'longitude': 4.85309666406198,
+      'zoom': 10
     },
     title: 'Wood and stone place',
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
@@ -58,7 +68,7 @@ export const offers: Offer[] = [
 
   {
     id: '3',
-    image: 'img/apartment-02.jpg',
+    previewImage: 'img/apartment-02.jpg',
     city: {
       name: 'Amsterdam',
       'location': {
@@ -66,6 +76,11 @@ export const offers: Offer[] = [
         'longitude': 4.929309666406198,
         'zoom': 10
       }
+    },
+    'location': {
+      'latitude': 52.3909553943508,
+      'longitude': 4.929309666406198,
+      'zoom': 10
     },
     title: 'Canal View Prinsengracht',
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
@@ -85,7 +100,7 @@ export const offers: Offer[] = [
 
   {
     id: '4',
-    image: 'img/apartment-03.jpg',
+    previewImage: 'img/apartment-03.jpg',
     city: {
       name: 'Amsterdam',
       'location': {
@@ -93,6 +108,11 @@ export const offers: Offer[] = [
         'longitude': 4.939309666406198,
         'zoom': 10
       }
+    },
+    'location': {
+      'latitude': 52.3809553943508,
+      'longitude': 4.939309666406198,
+      'zoom': 10
     },
     title: 'Nice, cozy, warm big bed apartment',
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
@@ -112,7 +132,7 @@ export const offers: Offer[] = [
 
   {
     id: '5',
-    image: 'img/apartment-02.jpg',
+    previewImage: 'img/apartment-02.jpg',
     city: {
       name: 'Paris',
       'location': {
@@ -120,6 +140,11 @@ export const offers: Offer[] = [
         'longitude': 2.35222,
         'zoom': 10
       }
+    },
+    'location': {
+      'latitude': 48.85661,
+      'longitude': 2.35222,
+      'zoom': 10
     },
     title: 'Beautiful & luxurious studio at great location',
     description: '',
@@ -139,7 +164,7 @@ export const offers: Offer[] = [
 
   {
     id: '6',
-    image: 'img/apartment-03.jpg',
+    previewImage: 'img/apartment-03.jpg',
     city: {
       name: 'Paris',
       'location': {
@@ -147,6 +172,11 @@ export const offers: Offer[] = [
         'longitude': 2.123456,
         'zoom': 10
       }
+    },
+    'location': {
+      'latitude': 48.85661,
+      'longitude': 2.123456,
+      'zoom': 10
     },
     title: 'Beautiful & luxurious studio at great location',
     description: '',
@@ -166,7 +196,7 @@ export const offers: Offer[] = [
 
   {
     id: '7',
-    image: 'img/apartment-02.jpg',
+    previewImage: 'img/apartment-02.jpg',
     city: {
       name: 'Hamburg',
       'location': {
@@ -174,6 +204,11 @@ export const offers: Offer[] = [
         'longitude': 9.993682,
         'zoom': 10
       }
+    },
+    'location': {
+      'latitude': 53.551086,
+      'longitude': 9.993682,
+      'zoom': 10
     },
     title: 'Beautiful & luxurious studio at great location',
     description: '',
