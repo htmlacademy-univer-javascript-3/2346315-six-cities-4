@@ -45,8 +45,8 @@ function Map({city, points, isMainPage}: MapProps): JSX.Element {
       const markers = layerGroup().addTo(map);
       points.forEach((point) => {
         new Marker({
-          lat: point.city.location.latitude,
-          lng: point.city.location.longitude
+          lat: point.location.latitude,
+          lng: point.location.longitude
         }).setIcon(selectedMarker !== null && point.id === selectedMarker.id ? currentIcon : defaultIcon)
           .addTo(markers);
 

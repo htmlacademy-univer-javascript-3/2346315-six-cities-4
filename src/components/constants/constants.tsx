@@ -11,10 +11,9 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
+export const URL_MARKER_DEFAULT = '/img/pin.svg';
 
-export const URL_MARKER_DEFAULT = 'public/img/pin.svg';
-
-export const URL_MARKER_CURRENT = 'public/img/pin-active.svg';
+export const URL_MARKER_CURRENT = '/img/pin-active.svg';
 
 export const CARD_WIDTH = '260';
 
@@ -33,6 +32,12 @@ export enum MapClasses {
   SectionPropertyMapClass = 'offer__map map',
 }
 
+export enum APIRoute {
+  Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 export const SORT_TYPES = {
   0: 'Popular',
   1: 'Price: low to high',
@@ -43,3 +48,5 @@ export const SORT_TYPES = {
 export const SORTING_WIDTH = '7';
 
 export const SORTING_HEIGHT = '4';
+
+export const TIMEOUT_SHOW_ERROR = 2000;

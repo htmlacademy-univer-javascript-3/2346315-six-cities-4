@@ -14,7 +14,7 @@ type OfferCardProps = {
 function OfferCard({offer, cardType}: OfferCardProps): JSX.Element {
   const {
     id,
-    image,
+    previewImage,
     title,
     /*description,*/
     isPremium,
@@ -40,7 +40,7 @@ function OfferCard({offer, cardType}: OfferCardProps): JSX.Element {
         )}
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">
-            <img className="place-card__image" src={image} width={CARD_WIDTH} height={CARD_HEIGHT} alt="Place image" />
+            <img className="place-card__image" src={previewImage} width={CARD_WIDTH} height={CARD_HEIGHT} alt="Place image" />
           </a>
         </div>
         <div className="place-card__info">
