@@ -1,4 +1,28 @@
+import { FormEvent, useRef } from 'react';
+import { useAppDispatch } from '../../hooks';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../store/api-actions';
+
 function LoginScreen(): JSX.Element {
+  const loginRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    if (loginRef.current !== null && passwordRef.current !== null) {
+      dispatch(
+        login({
+          email: loginRef.current.value,
+          password: passwordRef.current.value,
+        })
+      );
+    }
+    navigate('/');
+  };
   return(
     <div className="page page--gray page--login">
       <header className="header">
@@ -17,7 +41,7 @@ function LoginScreen(): JSX.Element {
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
-            <form className="login__form form" action="#" method="post">
+            <form className="login__form form" onSubmit={handleSubmit}>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
                 <input className="login__input form__input" type="email" name="email" placeholder="Email" required />

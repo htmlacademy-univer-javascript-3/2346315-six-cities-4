@@ -1,8 +1,10 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../constants/constants';
 import { Offer } from '../../types/offer';
 import { Review } from '../../types/review.ts';
 import { useAppSelector } from '../../hooks/index.ts';
+import { browserHistory } from '../../browser-history.ts';
+
 
 import LoadingScreen from '../../pages/loading-screen/loading-screen.tsx';
 import MainScreen from '../../pages/main-screen/main-screen';
@@ -11,7 +13,7 @@ import LoginScreen from '../../pages/login-screen/login-screen';
 import OfferScreen from '../../pages/offer/offer-screen';
 import NotFoundScreen from '../../pages/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
-
+import HistoryRouter from '../history-router/history-router.tsx';
 
 type AppScreenProps = {
   reviews: Review[];
@@ -28,7 +30,7 @@ function App({reviews}: AppScreenProps): JSX.Element {
   }
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Main}
@@ -57,7 +59,7 @@ function App({reviews}: AppScreenProps): JSX.Element {
           element={<NotFoundScreen/>}
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 
