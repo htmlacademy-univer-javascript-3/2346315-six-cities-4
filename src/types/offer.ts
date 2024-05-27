@@ -2,7 +2,7 @@ import { User } from '../types/user.ts';
 import { City } from '../types/city.ts';
 
 export type Offer = {
-  id: number;
+  id: string;
   image: string;
   city: City;
   title: string;
@@ -16,4 +16,3 @@ export type Offer = {
   owner: User;
   isFavorite: boolean;
 };
-

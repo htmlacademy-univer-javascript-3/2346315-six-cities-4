@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/offer';
 
-import OfferCard from '../../components/card/card';
+import OfferCard from '../../components/offer-card/offer-card.tsx';
 
 type FavoritesScreenProps = {
   favorites: Offer[];
@@ -34,7 +34,7 @@ function FavoritesScreen({favorites}: FavoritesScreenProps): JSX.Element {
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
                     <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    <span className="header__favorite-count">3</span>
+                    <span className="header__favorite-count">{favorites.length}</span>
                   </a>
                 </li>
                 <li className="header__nav-item">

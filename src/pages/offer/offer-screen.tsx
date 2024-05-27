@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import { Review } from '../../types/review.ts';
 import { Offer } from '../../types/offer.ts';
 import { offers } from '../../mocks/offers.ts';
@@ -15,7 +14,7 @@ type OfferScreenProps = {
 }
 
 function OfferScreen({reviews, favorites}: OfferScreenProps): JSX.Element {
-  const [, setActiveOfferId] = useState<number | null>(null);
+
   return(
     <div className="page">
       <header className="header">
@@ -176,12 +175,12 @@ function OfferScreen({reviews, favorites}: OfferScreenProps): JSX.Element {
           </div>
         </div>
         <section className="offer__map map">
-          <Map city={offers[0].city} points={offers.slice(0, 3)} activeOfferId={0} isMainPage={false}/>
+          <Map city={offers[0].city} points={offers.slice(0, 3)} isMainPage={false}/>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <OffersList offers={offers.slice(0, 3)} listType={'near'} setActiveOfferId={setActiveOfferId}/>
+            <OffersList offers={offers.slice(0, 3)} listType={'near'} />
           </section>
         </div>
       </main>

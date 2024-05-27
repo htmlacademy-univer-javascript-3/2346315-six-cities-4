@@ -25,14 +25,7 @@ function useMap(mapRef: React.MutableRefObject<HTMLElement | null>, city: City):
       mapInitialized.current = true;
     }
 
-  }, [mapRef, city.location]);
-
-  useEffect(() => {
-    if (map && mapRef.current) {
-      map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [map, city.location]);
+  }, [mapRef, city]);
 
   return map;
 }
