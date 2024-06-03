@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/offer';
+import { FAVORITES_LOGO_HEIGHT, FAVORITES_LOGO_WIDTH } from '../../components/constants/constants.ts';
 
 import OfferCard from '../../components/offer-card/offer-card';
 import Header from '../../components/header/header.tsx';
@@ -48,7 +49,7 @@ function FavoritesScreen({favorites}: FavoritesScreenProps): JSX.Element {
       </main>
       <footer className="footer container">
         <Link to="/" className="footer__logo-link" >
-          <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
+          <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width={FAVORITES_LOGO_WIDTH} height={FAVORITES_LOGO_HEIGHT} />
         </Link>
       </footer>
     </div>

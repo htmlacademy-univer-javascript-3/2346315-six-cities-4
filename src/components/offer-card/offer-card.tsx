@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { CARD_WIDTH, CARD_HEIGHT, BOOKMARK_ICON_WIDTH, BOOKMARK_ICON_HEIGHT } from '../constants/constants';
 import { getRating } from '../../utils';
 import { useAppDispatch } from '../../hooks/index.ts';
-import { currentMarker } from '../../store/action.ts';
+import { setCurrentMarker } from '../../store/action.ts';
 
 
 type OfferCardProps = {
@@ -16,13 +16,10 @@ function OfferCard({offer, cardType}: OfferCardProps): JSX.Element {
     id,
     previewImage,
     title,
-    /*description,*/
     isPremium,
     type,
     rating,
-    /*bedrooms,*/
     price,
-    /*owner,*/
     isFavorite
   } = offer;
 
@@ -32,7 +29,7 @@ function OfferCard({offer, cardType}: OfferCardProps): JSX.Element {
 
   return (
     <Link to={`/offer/${id}`} state={offer}>
-      <article className={`${cardClass}`} onMouseEnter={() => dispatch(currentMarker({id}))} onMouseLeave={() => dispatch(currentMarker(null))} >
+      <article className={`${cardClass}`} onMouseEnter={() => dispatch(setCurrentMarker({id}))} onMouseLeave={() => dispatch(setCurrentMarker(null))} >
         {isPremium && (
           <div className="place-card__mark">
             <span>Premium</span>

@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { cityChange, sortTypeSelect, currentMarker, loadOffers, setError, requireAuthorization, setOffersDataLoadingStatus, saveEmail } from './action';
+import { changeCity, selectSortType, setCurrentMarker, loadOffers, setError, setAuthorizationStatus, setOffersLoadingStatus, loadOfferDetails, sendReview, saveEmail } from './action';
 import { AuthorizationStatus } from '../components/constants/constants';
 import { InitialStateType } from '../types/initial-state';
 
@@ -11,34 +11,46 @@ const initialState: InitialStateType = {
   authorizationStatus: AuthorizationStatus.Unknown,
   isOffersDataLoading: false,
   error: null,
-  email: null
+  currentOffer: {
+    offerInfo: null,
+    nearestOffers: [],
+    reviews: [],
+  },
+  userEmail: null
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(cityChange, (state, action) => {
+    .addCase(changeCity, (state, action) => {
       state.city = action.payload;
     })
-    .addCase(sortTypeSelect, (state, action) => {
+    .addCase(selectSortType, (state, action) => {
       state.sortType = action.payload;
     })
-    .addCase(currentMarker, (state, action) => {
+    .addCase(setCurrentMarker, (state, action) => {
       state.selectedMarker = action.payload;
     })
     .addCase(loadOffers, (state, {payload}) => {
       state.offers = payload;
     })
-    .addCase(requireAuthorization, (state, action) => {
+    .addCase(setAuthorizationStatus, (state, action) => {
       state.authorizationStatus = action.payload;
     })
-    .addCase(setOffersDataLoadingStatus, (state, action) => {
+    .addCase(setOffersLoadingStatus, (state, action) => {
       state.isOffersDataLoading = action.payload;
     })
     .addCase(setError, (state, action) => {
       state.error = action.payload;
     })
+    .addCase(loadOfferDetails, (state, { payload }) => {
+      state.selectedMarker = { id: payload.offerInfo.id };
+      state.currentOffer = { ...payload };
+    })
+    .addCase(sendReview, (state, { payload }) => {
+      state.currentOffer.reviews = [...state.currentOffer.reviews, payload];
+    })
     .addCase(saveEmail, (state, action) => {
-      state.email = action.payload;
+      state.userEmail = action.payload;
     });
 });
 

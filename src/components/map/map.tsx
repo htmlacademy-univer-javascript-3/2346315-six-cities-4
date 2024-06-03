@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { Icon, Marker, layerGroup } from 'leaflet';
 import { City } from '../../types/city';
-import { Offer } from '../../types/offer';
+import { Points } from '../../types/points';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../constants/constants';
 import { MapClasses } from '../constants/constants';
 import { useAppSelector } from '../../hooks';
@@ -11,8 +11,9 @@ import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
   city: City;
-  points: Offer[];
+  points: Points[];
   isMainPage: boolean;
+  specialCaseId?: string;
 };
 
 const defaultIcon = new Icon({
@@ -28,7 +29,7 @@ const currentIcon = new Icon({
 });
 
 
-function Map({city, points, isMainPage}: MapProps): JSX.Element {
+function Map({city, points, isMainPage, specialCaseId}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -43,20 +44,21 @@ function Map({city, points, isMainPage}: MapProps): JSX.Element {
   useEffect(() => {
     if (map) {
       const markers = layerGroup().addTo(map);
-      points.forEach((point) => {
-        new Marker({
-          lat: point.location.latitude,
-          lng: point.location.longitude
-        }).setIcon(selectedMarker !== null && point.id === selectedMarker.id ? currentIcon : defaultIcon)
-          .addTo(markers);
 
+      points.forEach((point) => {
+        const marker = new Marker([point.location.latitude, point.location.longitude]);
+        const isSelected = specialCaseId
+          ? point.id === specialCaseId
+          : selectedMarker !== null && point.id === selectedMarker.id;
+
+        marker.setIcon(isSelected ? currentIcon : defaultIcon).addTo(markers);
       });
 
       return () => {
         map.removeLayer(markers);
       };
     }
-  }, [map, points, selectedMarker]);
+  }, [map, points, selectedMarker, specialCaseId]);
 
 
   const mapClassName = isMainPage ? MapClasses.SectionPropertyMapClass : MapClasses.SectionMainMapClass;

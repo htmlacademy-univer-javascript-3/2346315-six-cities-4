@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../constants/constants';
 import { Offer } from '../../types/offer';
-import { Review } from '../../types/review.ts';
 import { useAppSelector } from '../../hooks/index.ts';
 import { browserHistory } from '../../browser-history.ts';
 
@@ -15,11 +14,7 @@ import NotFoundScreen from '../../pages/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import HistoryRouter from '../history-router/history-router.tsx';
 
-type AppScreenProps = {
-  reviews: Review[];
-};
-
-function App({reviews}: AppScreenProps): JSX.Element {
+function App(): JSX.Element {
   const offers: Offer[] = useAppSelector((state) => state.offers);
   const favorites = offers.filter((o) => o.isFavorite);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -52,7 +47,7 @@ function App({reviews}: AppScreenProps): JSX.Element {
         />
         <Route
           path={AppRoute.Offer}
-          element={<OfferScreen reviews={reviews} favorites={favorites}/>}
+          element={<OfferScreen favorites={favorites}/>}
         />
         <Route
           path="*"

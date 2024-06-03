@@ -1,5 +1,6 @@
-import { Offer } from './offer';
+import { Offer, ExtendedOffer } from './offer';
 import { AuthorizationStatus } from '../components/constants/constants';
+import { Review } from './review';
 
 export type InitialStateType = {
     error: string | null;
@@ -9,5 +10,10 @@ export type InitialStateType = {
     selectedMarker: {id: string} | null;
     authorizationStatus: AuthorizationStatus;
     isOffersDataLoading: boolean;
-    email: string | null;
+    currentOffer: {
+      offerInfo: ExtendedOffer | null;
+      nearestOffers: Offer[];
+      reviews: Review[];
+    };
+    userEmail: string | null;
   }
