@@ -1,6 +1,6 @@
 import { Review } from '../../types/review';
 import { getRating } from '../../utils';
-import { AVATAR_WIDTH, AVATAR_HEIGHT } from '../constants/constants';
+import { AVATAR_WIDTH, AVATAR_HEIGHT } from '../../constants/constants';
 
 type ReviewProps = {
   review: Review;

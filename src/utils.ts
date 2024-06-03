@@ -1,4 +1,4 @@
-import {Offer} from './types/offer';
+import { Offer } from './types/offer';
 
 export function getRating(ratingValue: number): string {
   return `${ratingValue * 20}%`;

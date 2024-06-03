@@ -1,5 +1,5 @@
 import { Offer, ExtendedOffer } from './offer';
-import { AuthorizationStatus } from '../components/constants/constants';
+import { AuthorizationStatus } from '../constants/constants';
 import { Review } from './review';
 
 export type InitialStateType = {
