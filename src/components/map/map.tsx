@@ -2,9 +2,10 @@ import { useRef, useEffect } from 'react';
 import { Icon, Marker, layerGroup } from 'leaflet';
 import { City } from '../../types/city';
 import { Points } from '../../types/points';
-import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../constants/constants';
-import { MapClasses } from '../constants/constants';
+import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../constants/constants.ts';
+import { MapClasses } from '../../constants/constants.ts';
 import { useAppSelector } from '../../hooks';
+import { getCurrentMarker } from '../../store/offers-slice/offers-slice-selectors.ts';
 
 import useMap from '../../hooks/use-map';
 import 'leaflet/dist/leaflet.css';
@@ -33,11 +34,11 @@ function Map({city, points, isMainPage, specialCaseId}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
-  const selectedMarker = useAppSelector((state) => state.selectedMarker);
+  const selectedMarker = useAppSelector(getCurrentMarker);
 
   useEffect(() => {
     if (map) {
-      map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
+      map.flyTo([city.location.latitude, city.location.longitude], city.location.zoom);
     }
   }, [map, city]);
 

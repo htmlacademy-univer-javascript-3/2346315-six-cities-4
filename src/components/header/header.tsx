@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/offer.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.ts';
-import { AuthorizationStatus } from '../constants/constants.ts';
+import { AuthorizationStatus } from '../../constants/constants.ts';
 import { logout } from '../../store/api-actions.ts';
+import { getAuthorizationStatus, getEmail } from '../../store/user-slice/user-slice-selectors.ts';
 
 type HeaderProps = {
   favorites: Offer[];
@@ -10,8 +11,8 @@ type HeaderProps = {
 
 function Header({favorites}: HeaderProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const userEmail = useAppSelector((state) => state.userEmail);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const userEmail = useAppSelector(getEmail);
 
   const handleSignOut = () => {
     dispatch(logout());

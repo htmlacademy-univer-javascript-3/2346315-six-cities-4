@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/offer';
-import { FAVORITES_LOGO_HEIGHT, FAVORITES_LOGO_WIDTH } from '../../components/constants/constants.ts';
+import { FAVORITES_LOGO_HEIGHT, FAVORITES_LOGO_WIDTH } from '../../constants/constants.ts';
 
 import OfferCard from '../../components/offer-card/offer-card';
 import Header from '../../components/header/header.tsx';

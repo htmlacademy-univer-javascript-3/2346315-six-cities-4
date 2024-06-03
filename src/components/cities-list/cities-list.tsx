@@ -1,6 +1,6 @@
 import { useAppDispatch } from '../../hooks';
-import { changeCity } from '../../store/action.ts';
-
+import { changeCity } from '../../store/app-settings-slice/app-settings-slice';
+import { memo } from 'react';
 
 type CitiesListProps = {
   cities: { name: string; id: number }[];
@@ -36,4 +36,4 @@ function CitiesList({cities}: CitiesListProps): JSX.Element {
   );
 }
 
-export default CitiesList;
+export const CitiesListMemo = memo(CitiesList);

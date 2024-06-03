@@ -1,6 +1,8 @@
 import { Offer } from '../../types/offer';
 import { useAppSelector } from '../../hooks';
 import { getSorting } from '../../utils.ts';
+import { memo } from 'react';
+import { getSortType } from '../../store/app-settings-slice/app-settings-selectors.ts';
 
 import OfferCard from '../offer-card/offer-card';
 
@@ -10,7 +12,7 @@ type OffersListProps = {
 };
 
 function OffersList({ offers, listType }: OffersListProps) {
-  const selectedSortType = useAppSelector((state) => state.sortType);
+  const selectedSortType = useAppSelector(getSortType);
   const sortedOffers = getSorting(offers, selectedSortType);
 
   const baseClass = 'places__list';
@@ -30,4 +32,4 @@ function OffersList({ offers, listType }: OffersListProps) {
   );
 }
 
-export default OffersList;
+export const OffersListMemo = memo(OffersList);

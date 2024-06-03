@@ -3,6 +3,6 @@ import { ExtendedOffer, Offer } from './offer';
 
 export type OfferData = {
   offerInfo: ExtendedOffer;
-  nearestOffers: Offer[];
+  nearbyOffers: Offer[];
   reviews: Review[];
 };
