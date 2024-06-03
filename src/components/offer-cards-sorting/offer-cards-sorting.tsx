@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.ts';
-import { sortTypeSelect } from '../../store/action.ts';
-import { SORT_TYPES, SORTING_HEIGHT, SORTING_WIDTH } from '../constants/constants.tsx';
+import { selectSortType } from '../../store/action.ts';
+import { SORT_TYPES, SORTING_HEIGHT, SORTING_WIDTH } from '../constants/constants.ts';
 
 function OfferCardsSorting() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -9,7 +9,7 @@ function OfferCardsSorting() {
 
   const dispatch = useAppDispatch();
   const onSortTypeSelected = (sortType: string) => {
-    dispatch(sortTypeSelect(sortType));
+    dispatch(selectSortType(sortType));
     setDropdownOpen(false);
   };
 

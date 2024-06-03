@@ -1,5 +1,5 @@
 import { useAppDispatch } from '../../hooks';
-import { cityChange } from '../../store/action.ts';
+import { changeCity } from '../../store/action.ts';
 
 
 type CitiesListProps = {
@@ -21,7 +21,7 @@ const City = ({name, cityChangeName}: CityProps): JSX.Element => (
 function CitiesList({cities}: CitiesListProps): JSX.Element {
   const dispatch = useAppDispatch();
   const handleCityChange = (city: string) => {
-    dispatch(cityChange(city));
+    dispatch(changeCity(city));
   };
   return (
     <ul className="locations__list tabs__list">

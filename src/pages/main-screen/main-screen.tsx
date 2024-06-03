@@ -6,7 +6,7 @@ import { Cities } from '../../cities-list.ts';
 import OffersList from '../../components/offers-list/offers-list.tsx';
 import Map from '../../components/map/map.tsx';
 import CitiesList from '../../components/cities-list/cities-list.tsx';
-import OfferCardsSorting from '../../components/offers-cards-sorting/offers-cards-sorting.tsx';
+import OfferCardsSorting from '../../components/offer-cards-sorting/offer-cards-sorting.tsx';
 import Header from '../../components/header/header.tsx';
 
 type MainScreenProps = {
@@ -44,7 +44,7 @@ function MainScreen({favorites}: MainScreenProps): JSX.Element {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={currentCity} points={currentCityOffers} isMainPage/>
+                <Map city={currentCity} points={currentCityOffers} specialCaseId={undefined} isMainPage/>
               </section>
             </div>
           </div>

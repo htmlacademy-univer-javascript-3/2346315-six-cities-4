@@ -1,6 +1,6 @@
 import { Location } from '../types/location.ts';
 
-export type City = {
-  name: string;
+export type Points = {
+  id: string;
   location: Location;
 }

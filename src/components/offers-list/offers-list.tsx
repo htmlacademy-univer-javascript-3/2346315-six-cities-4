@@ -2,7 +2,7 @@ import { Offer } from '../../types/offer';
 import { useAppSelector } from '../../hooks';
 import { getSorting } from '../../utils.ts';
 
-import OfferCard from '../offer-card/offer-card.tsx';
+import OfferCard from '../offer-card/offer-card';
 
 type OffersListProps = {
   offers: Offer[];
