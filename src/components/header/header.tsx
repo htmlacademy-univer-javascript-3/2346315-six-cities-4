@@ -3,16 +3,24 @@ import { Offer } from '../../types/offer.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.ts';
 import { AuthorizationStatus } from '../../constants/constants.ts';
 import { logout } from '../../store/api-actions.ts';
-import { getAuthorizationStatus, getEmail } from '../../store/user-slice/user-slice-selectors.ts';
+import { getAuthorizationStatus } from '../../store/user-slice/user-slice-selectors.ts';
+import { getEmail } from '../../services/email.ts';
+import { getProfilePicture } from '../../services/profile-picture.ts';
 
 type HeaderProps = {
   favorites: Offer[];
 }
 
+const AVATAR_SIZE = '20px';
+const AVATAR_MARGIN_RIGHT = '8px';
+const AVATAR_BORDER_RADIUS = '50%';
+
 function Header({favorites}: HeaderProps): JSX.Element {
+
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  const userEmail = useAppSelector(getEmail);
+  const userEmail = getEmail();
+  const userPicture = getProfilePicture();
 
   const handleSignOut = () => {
     dispatch(logout());
@@ -31,8 +39,20 @@ function Header({favorites}: HeaderProps): JSX.Element {
             <ul className="header__nav-list">
               <li className="header__nav-item user">
                 <div className="header__nav-link header__nav-link--profile">
-                  <div className="header__avatar-wrapper user__avatar-wrapper">
-                  </div>
+                  {authorizationStatus === AuthorizationStatus.Auth ? (
+                    <img src={userPicture} className="header__avatar-wrapper"
+                      style={{
+                        borderRadius: AVATAR_BORDER_RADIUS,
+                        width: AVATAR_SIZE,
+                        height: AVATAR_SIZE,
+                        marginRight: AVATAR_MARGIN_RIGHT
+                      }}
+                    >
+                    </img>
+                  ) : (
+                    <div className="header__avatar-wrapper user__avatar-wrapper">
+                    </div>
+                  )}
                   {authorizationStatus === AuthorizationStatus.Auth ? (
                     <Link to="/favorites">
                       <span className="header__user-name user__name">{userEmail}</span>

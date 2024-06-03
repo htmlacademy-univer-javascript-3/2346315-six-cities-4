@@ -3,26 +3,26 @@ import { Offer } from '../../types/offer.ts';
 import { useAppSelector } from '../../hooks/index.ts';
 import { Cities } from '../../cities-list.ts';
 import { CitiesListMemo } from '../../components/cities-list/cities-list.tsx';
-import { OffersListMemo } from '../../components/offers-list/offers-list.tsx';
 import { getOffers } from '../../store/offers-slice/offers-slice-selectors.ts';
-import { getCity } from '../../store/app-settings-slice/app-settings-selectors.ts';
 
 import Map from '../../components/map/map.tsx';
-import OfferCardsSorting from '../../components/offer-cards-sorting/offer-cards-sorting.tsx';
 import Header from '../../components/header/header.tsx';
+import EmptyOffer from '../../components/main-empty/main-empty.tsx';
+import CityPlaces from '../../components/city-places/city-places.tsx';
 
 type MainScreenProps = {
   favorites: Offer[];
+  city: string;
 }
 
-function MainScreen({favorites}: MainScreenProps): JSX.Element {
+function MainScreen({favorites, city}: MainScreenProps): JSX.Element {
   const offers = useAppSelector(getOffers);
-  const city = useAppSelector(getCity);
 
   const currentCityOffers = useMemo(
     () => offers.filter((offer) => offer.city.name === city),
     [offers, city]
   );
+
   const currentCity = currentCityOffers.length > 0 ? currentCityOffers[0].city : offers[0].city;
 
   return (
@@ -37,12 +37,9 @@ function MainScreen({favorites}: MainScreenProps): JSX.Element {
         </div>
         <div className="cities">
           <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{`${currentCityOffers.length} places to stay in ${city}`}</b>
-              <OfferCardsSorting/>
-              <OffersListMemo offers={currentCityOffers} listType={'typical'} />
-            </section>
+            {currentCityOffers.length > 0 ?
+              (<CityPlaces city={city} offers={currentCityOffers}/>) :
+              (<EmptyOffer city={city}/>)}
             <div className="cities__right-section">
               <section className="cities__map map">
                 <Map city={currentCity} points={currentCityOffers} specialCaseId={undefined} isMainPage/>

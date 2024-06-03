@@ -8,16 +8,17 @@ interface ErrorResponse {
   message: string;
 }
 
+const API_URL = 'https://14.design.htmlacademy.pro/six-cities';
+const TOKEN_NAME = 'X-Token';
+const TIMEOUT = 5000;
+
 const errorStatusMap: { [key: number]: boolean } = {
   [StatusCodes.BAD_REQUEST]: true,
   [StatusCodes.UNAUTHORIZED]: true,
   [StatusCodes.NOT_FOUND]: true,
 };
 
-const isErrorStatus = (status: number) => !!errorStatusMap[status];
-
-const API_URL = 'https://14.design.htmlacademy.pro/six-cities';
-const TIMEOUT = 5000;
+const isErrorStatus = (status: number): boolean => !!errorStatusMap[status];
 
 export const initializeAPI = (): AxiosInstance => {
   const apiInstance = axios.create({
@@ -29,7 +30,7 @@ export const initializeAPI = (): AxiosInstance => {
     const token = retrieveToken();
 
     if (token && config.headers) {
-      config.headers['X-Token'] = token;
+      config.headers[TOKEN_NAME] = token;
     }
 
     return config;

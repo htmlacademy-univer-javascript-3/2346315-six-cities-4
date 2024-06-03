@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import { Icon, Marker, layerGroup } from 'leaflet';
 import { City } from '../../types/city';
 import { Points } from '../../types/points';
-import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../constants/constants.ts';
+import { URL } from '../../constants/constants.ts';
 import { MapClasses } from '../../constants/constants.ts';
 import { useAppSelector } from '../../hooks';
 import { getCurrentMarker } from '../../store/offers-slice/offers-slice-selectors.ts';
@@ -18,13 +18,13 @@ type MapProps = {
 };
 
 const defaultIcon = new Icon({
-  iconUrl: URL_MARKER_DEFAULT,
+  iconUrl: URL.Default,
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
 
 const currentIcon = new Icon({
-  iconUrl: URL_MARKER_CURRENT,
+  iconUrl: URL.Current,
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });

@@ -1,6 +1,5 @@
-import React from 'react';
 import { useState } from 'react';
-import BounceLoader from 'react-spinners/BounceLoader'; 
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const LoadingScreen = () => {
   const [loading] = useState(true);
@@ -28,7 +27,7 @@ const LoadingScreen = () => {
 
   return (
     <div style={wrapperStyle}>
-      <BounceLoader 
+      <ClipLoader
         color={color}
         loading={loading}
         cssOverride={loaderStyle}
