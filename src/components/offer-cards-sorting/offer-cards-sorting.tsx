@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.ts';
 import { selectSortType } from '../../store/app-settings-slice/app-settings-slice.ts';
-import { SORT_TYPES, SORTING_HEIGHT, SORTING_WIDTH } from '../../constants/constants.ts';
+import { SORT_TYPES, Sorting } from '../../constants/constants.ts';
 import { getSortType } from '../../store/app-settings-slice/app-settings-selectors.ts';
 
 function OfferCardsSorting() {
@@ -9,6 +9,7 @@ function OfferCardsSorting() {
   const selectedSortType = useAppSelector(getSortType);
 
   const dispatch = useAppDispatch();
+
   const onSortTypeSelected = (sortType: string) => {
     dispatch(selectSortType(sortType));
     setDropdownOpen(false);
@@ -19,7 +20,7 @@ function OfferCardsSorting() {
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0}>
         {selectedSortType}
-        <svg className="places__sorting-arrow" width={SORTING_WIDTH} height={SORTING_HEIGHT}>
+        <svg className="places__sorting-arrow" width={Sorting.Width} height={Sorting.Height}>
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>

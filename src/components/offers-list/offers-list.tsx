@@ -16,6 +16,7 @@ function OffersList({ offers, listType }: OffersListProps) {
   const sortedOffers = getSorting(offers, selectedSortType);
 
   const baseClass = 'places__list';
+
   const listClassMapping = {
     typical: `${baseClass} cities__places-list tabs__content`,
     near: `${baseClass} near-places__list`

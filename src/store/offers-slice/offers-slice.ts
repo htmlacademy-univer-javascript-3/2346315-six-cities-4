@@ -4,6 +4,7 @@ import { OffersState } from '../../types/state.ts';
 import { StateKey } from '../../constants/constants.ts';
 import { OfferData } from '../../types/offer-data.ts';
 import { Review } from '../../types/review.ts';
+import { updateOffer } from '../../utils.ts';
 
 const initialState: OffersState = {
   currentOffer: {
@@ -14,6 +15,7 @@ const initialState: OffersState = {
   offers: [],
   activeMarker: null,
   isLoading: false,
+  favorites: []
 };
 
 export const offersSlice = createSlice({
@@ -22,6 +24,11 @@ export const offersSlice = createSlice({
   reducers: {
     loadOffers(state, action: PayloadAction<Offer[]>) {
       state.offers = action.payload;
+      state.favorites = action.payload.filter((it) => it.isFavorite);
+    },
+    updateOffers: (state, action: PayloadAction<Offer>) => {
+      state.offers = updateOffer(state.offers, action.payload);
+      state.favorites = state.offers.filter((it) => it.isFavorite);
     },
     setOffersDataLoadingStatus(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
@@ -39,6 +46,18 @@ export const offersSlice = createSlice({
     setCurrentMarker(state, action: PayloadAction<{ id: string } | null>) {
       state.activeMarker = action.payload;
     },
+    loadFavorites(state, action: PayloadAction<Offer[]>){
+      state.favorites = action.payload;
+    },
   },
 });
-export const {loadOffers, setOffersDataLoadingStatus, loadOfferDetails, sendReview, setCurrentMarker} = offersSlice.actions;
+
+export const {
+  loadOffers,
+  updateOffers,
+  setOffersDataLoadingStatus,
+  loadOfferDetails,
+  sendReview,
+  setCurrentMarker,
+  loadFavorites
+} = offersSlice.actions;

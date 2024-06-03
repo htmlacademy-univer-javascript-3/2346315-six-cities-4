@@ -1,6 +1,6 @@
 import { Review } from '../../types/review';
 import { getRating } from '../../utils';
-import { AVATAR_WIDTH, AVATAR_HEIGHT } from '../../constants/constants';
+import { Avatar } from '../../constants/constants';
 
 type ReviewProps = {
   review: Review;
@@ -13,7 +13,7 @@ function OneReview({review}: ReviewProps): JSX.Element {
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src={user.avatarUrl} width={AVATAR_WIDTH} height={AVATAR_HEIGHT}
+          <img className="reviews__avatar user__avatar" src={user.avatarUrl} width={Avatar.Size} height={Avatar.Size}
             alt="Reviews avatar"
           />
         </div>

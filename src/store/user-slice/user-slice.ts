@@ -14,10 +14,7 @@ export const userSlice = createSlice({
     requireAuthorization(state, action: PayloadAction<AuthorizationStatus>) {
       state.authorizationStatus = action.payload;
     },
-    saveEmail(state, action: PayloadAction<string>) {
-      state.email = action.payload;
-    },
   },
 });
 
-export const { requireAuthorization, saveEmail } = userSlice.actions;
+export const { requireAuthorization } = userSlice.actions;
