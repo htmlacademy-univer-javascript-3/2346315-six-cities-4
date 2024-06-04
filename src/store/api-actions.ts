@@ -70,7 +70,7 @@ export const checkAuth = createAsyncThunk<void, undefined, {
   extra: AxiosInstance;
 }>(
   'user/checkAuth',
-  async (_, {dispatch, extra: api}) => {
+  async (_, { dispatch, extra: api }) => {
     try {
       await api.get(APIRoute.Login);
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
@@ -120,8 +120,8 @@ export const changeFavoriteStatusAction = createAsyncThunk<void, CheckFavoriteBu
     extra: AxiosInstance;
   }>(
     'offers/changeFavoriteStatus',
-    async ({ status, offerId }, {extra: api, dispatch}) => {
-      const { data } = await api.post<Offer>(`${APIRoute.Favorite}/${offerId}/${status}`);
+    async ({status, offerId}, {extra: api, dispatch}) => {
+      const {data} = await api.post<Offer>(`${APIRoute.Favorite}/${offerId}/${status}`);
       dispatch(updateOffers(data));
       dispatch(fetchFavoritesAction());
     },

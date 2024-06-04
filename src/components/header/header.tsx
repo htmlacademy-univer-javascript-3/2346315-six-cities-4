@@ -16,7 +16,6 @@ const AVATAR_MARGIN_RIGHT = '8px';
 const AVATAR_BORDER_RADIUS = '50%';
 
 function Header({favorites}: HeaderProps): JSX.Element {
-
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const userEmail = getEmail();
@@ -55,7 +54,7 @@ function Header({favorites}: HeaderProps): JSX.Element {
                   )}
                   {authorizationStatus === AuthorizationStatus.Auth ? (
                     <Link to="/favorites">
-                      <span className="header__user-name user__name">{userEmail}</span>
+                      <span className="header__user-name user__name" data-test={userEmail}>{userEmail}</span>
                       <span className="header__favorite-count">{favorites.length}</span>
                     </Link>
                   ) : (
@@ -65,9 +64,9 @@ function Header({favorites}: HeaderProps): JSX.Element {
               </li>
               {authorizationStatus === AuthorizationStatus.Auth && (
                 <li className="header__nav-item">
-                  <a href="#" className="header__nav-link" onClick={handleSignOut}>
+                  <Link to="/login" className="header__nav-link" onClick={handleSignOut}>
                     <span className="header__signout">Sign out</span>
-                  </a>
+                  </Link>
                 </li>
               )}
             </ul>

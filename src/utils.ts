@@ -34,5 +34,6 @@ export const updateOffer = (offers: Offer[], updatedOffer: Offer): Offer[] => {
       index === offerIndex ? updatedOffer : offer
     );
   }
+
   return offers;
 };

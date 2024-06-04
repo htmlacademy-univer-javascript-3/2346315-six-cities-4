@@ -5,18 +5,15 @@ import { sendCommentAction } from '../../store/api-actions.ts';
 type CommentFromProps = {
   id: string;
 };
-
 type Rating = {
   rating: string;
   comment: string;
 }
-
 function CommentSubmissionForm({ id }: CommentFromProps) {
   const [formState, setFormState] = useState<Rating>({
     rating: '',
     comment: '',
   });
-
   const dispatch = useAppDispatch();
 
   const handleCommentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -108,5 +105,4 @@ function CommentSubmissionForm({ id }: CommentFromProps) {
     </form>
   );
 }
-
 export default CommentSubmissionForm;

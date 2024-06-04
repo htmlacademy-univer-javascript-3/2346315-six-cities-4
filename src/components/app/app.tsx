@@ -16,7 +16,9 @@ import NotFoundScreen from '../../pages/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import HistoryRouter from '../history-router/history-router.tsx';
 
+
 function App(): JSX.Element {
+
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const loadingOffers = useAppSelector(getOffersLoadingStatus);
   const favorites: Offer[] = useAppSelector(getFavorites);

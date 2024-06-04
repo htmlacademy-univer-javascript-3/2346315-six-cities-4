@@ -2,7 +2,6 @@ import axios, {AxiosError, AxiosInstance } from 'axios';
 import { retrieveToken } from './token';
 import { StatusCodes } from 'http-status-codes';
 import { handleError } from './handle-error';
-
 interface ErrorResponse {
   type: string;
   message: string;
@@ -25,7 +24,6 @@ export const initializeAPI = (): AxiosInstance => {
     baseURL: API_URL,
     timeout: TIMEOUT,
   });
-
   apiInstance.interceptors.request.use((config) => {
     const token = retrieveToken();
 
@@ -35,7 +33,6 @@ export const initializeAPI = (): AxiosInstance => {
 
     return config;
   });
-
   apiInstance.interceptors.response.use(
     (response) => response,
     (error: AxiosError<ErrorResponse>) => {
@@ -43,10 +40,8 @@ export const initializeAPI = (): AxiosInstance => {
         const { message } = error.response.data;
         handleError(message);
       }
-
       return Promise.reject(error);
     }
   );
-
   return apiInstance;
 };
