@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('should login the user', async ({ page }) => {
-  const email = 'mercymainer228@overwatch.ru';
+  const email = 'mercymainer228@women.ru';
   const password = 'top1'
 
   await page.goto('http://localhost:5173/');
