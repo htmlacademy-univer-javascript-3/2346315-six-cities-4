@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getCity } from '../../store/app-settings-slice/app-settings-selectors';
 import { changeCity } from '../../store/app-settings-slice/app-settings-slice';
@@ -15,9 +16,9 @@ type CityProps = {
 
 const City = ({name, cityChangeName, isActive}: CityProps): JSX.Element => (
   <li className="locations__item" onClick={() => cityChangeName(name)}>
-    <a className={`locations__item-link tabs__item ${isActive ? 'tabs__item--active' : ''}`} href="#">
+    <Link className={`locations__item-link tabs__item ${isActive ? 'tabs__item--active' : ''}`} to="#">
       <span>{name}</span>
-    </a>
+    </Link>
   </li>
 );
 

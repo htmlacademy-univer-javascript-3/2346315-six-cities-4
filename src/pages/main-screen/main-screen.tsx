@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { Offer } from '../../types/offer.ts';
 import { useAppSelector } from '../../hooks/index.ts';
-import { Cities } from '../../cities-list.ts';
+import { Cities } from '../../constants/cities-list.ts';
 import { CitiesListMemo } from '../../components/cities-list/cities-list.tsx';
 import { getOffers } from '../../store/offers-slice/offers-slice-selectors.ts';
 

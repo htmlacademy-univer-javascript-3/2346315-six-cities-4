@@ -1,6 +1,6 @@
 .error-message {
   position: fixed;
-  top: 1000px;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
   padding: 10px;

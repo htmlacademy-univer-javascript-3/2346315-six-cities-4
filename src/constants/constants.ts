@@ -45,6 +45,11 @@ export enum Sorting {
   Height = 4
 }
 
+export enum FavoriteCard {
+  Width = 150,
+  Height = 110
+}
+
 export enum URL {
   Default = '/img/pin.svg',
   Current = '/img/pin-active.svg'
